@@ -1,0 +1,31 @@
+# For most projects, this workflow file will not need changing; you simply need
+# to commit it to your repository.
+#
+# You may wish to alter this file to override the set of languages analyzed,
+# or to provide custom queries or build logic.
+#
+# ******** NOTE ********
+# We have attempted to detect the languages in your repository. Please check
+# the `language` matrix defined below to confirm you have the correct set of
+# supported CodeQL languages.
+#
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: CodeQL Resolve RAM
+      run: | 
+        base_dir="/opt/hostedtoolcache/CodeQL"
+        latest_version=$(ls $base_dir | sort -V | tail -n 1)
+        codeql_path=$base_dir/$latest_version/x64/codeql/codeql        
+        $codeql_path resolve ram
+    - name: CodeQL Resolve RAM (path?)
+      run: | 
+        codeql resolve ram        
