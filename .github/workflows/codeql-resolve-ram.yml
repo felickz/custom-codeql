@@ -26,6 +26,3 @@ jobs:
         latest_version=$(ls $base_dir | sort -V | tail -n 1)
         codeql_path=$base_dir/$latest_version/x64/codeql/codeql        
         $codeql_path resolve ram
-    - name: CodeQL Resolve RAM (path?)
-      run: | 
-        codeql resolve ram        
