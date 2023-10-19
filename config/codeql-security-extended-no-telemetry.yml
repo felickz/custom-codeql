@@ -1,0 +1,20 @@
+# name: "Security Extended minus telemetry queries" 
+disable-default-queries: true
+
+queries:
+- uses: security-extended
+
+# packs:
+#     # csharp security-extended
+#     - codeql/csharp-queries:codeql-suites/csharp-security-extended.qls
+
+query-filters:
+- exclude:
+    kind: metric
+    tags contain:
+        - summary
+        - telemetry
+
+  # - exclude:      
+  #     # https://github.com/github/codeql/blob/main/csharp/ql/src/Telemetry/UnsupportedExternalAPIs.ql
+  #     id: cs/telemetry/unsupported-external-api
