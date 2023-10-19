@@ -11,7 +11,7 @@ queries:
 query-filters:
 - exclude:
     kind: metric
-    tags contain:
+    tags contain all:
         - summary
         - telemetry
 
