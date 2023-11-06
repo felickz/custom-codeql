@@ -8,6 +8,7 @@ private import semmle.code.java.security.LogInjection
 private import semmle.code.java.security.OgnlInjection
 private import semmle.code.java.security.RequestForgery
 private import semmle.code.java.security.TemplateInjection
+private import semmle.code.java.security.XSS
 
 /**
  * Filter nodes by its location (relative path or base name).
@@ -45,6 +46,7 @@ class AllSinks extends DataFlow::Node {
     this instanceof OgnlInjectionSink or
     this instanceof RequestForgerySink or
     this instanceof TemplateInjectionSink or
+    this instanceof XssSink or
     // All MaD sinks
     sinkNode(this, _)
   }
