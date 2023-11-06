@@ -1,21 +1,16 @@
 /**
- * @name SQL query built from user-controlled sources
- * @description Building a SQL query from user-controlled sources is vulnerable to insertion of
- *              malicious SQL code by the user.
  * @kind path-problem
- * @problem.severity error
- * @security-severity 8.8
- * @precision high
- * @id py/sql-injection
- * @tags security
- *       external/cwe/cwe-089
+ * @description Partial Query: https://aegilops.github.io/posts/partial-flow-in-codeql-with-configsig/
  */
 
 import python
 import semmle.python.security.dataflow.SqlInjectionQuery
-import SqlInjectionFlow::PathGraph
 
-from SqlInjectionFlow::PathNode source, SqlInjectionFlow::PathNode sink
-where SqlInjectionFlow::flowPath(source, sink)
-select sink.getNode(), source, sink, "This SQL query depends on a $@.", source.getNode(),
-  "user-provided value"
+int explorationLimit() { result = 20 }  // [1]
+module FlowsPartial = SqlInjectionFlow::FlowExploration<explorationLimit/0>;   // [2]
+
+import FlowsPartial::PartialPathGraph  // [3]
+from FlowsPartial::PartialPathNode source, FlowsPartial::PartialPathNode sink  // [4]
+where FlowsPartial::partialFlow(source, sink, _)  // [5]
+select sink.getNode(), source, sink, "This node receives taint from $@.", source.getNode(),
+  "this source"
