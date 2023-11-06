@@ -1,0 +1,7 @@
+---
+library: false
+name: felickz/codeql-java
+version: 0.1.0
+dependencies:
+  codeql/java-all: "^0.6.2"
+defaultSuiteFile: default.qls
