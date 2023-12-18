@@ -1,0 +1,8 @@
+name: "Custom CodeQL Config File - Synthetic Apps All Queries"
+disable-default-queries: true
+packs:
+  # csharp queries
+  - githubsecuritylab/codeql-csharp-queries
+  - GitHubSecurityLab/codeql-csharp-library-sources 
+  # security-experimental
+  - codeql/csharp-queries:codeql-suites/csharp-security-experimental.qls
