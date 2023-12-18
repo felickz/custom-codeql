@@ -5,6 +5,8 @@ packs:
   - GitHubSecurityLab/codeql-csharp-queries
   # Data extensions for csharp libraries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
   - GitHubSecurityLab/codeql-csharp-library-sources
+  # Data extensions for csharp extensions from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - GitHubSecurityLab/codeql-csharp-extensions
 
   # CodeQL security-experimental query suite
   - codeql/csharp-queries:codeql-suites/csharp-security-experimental.qls
