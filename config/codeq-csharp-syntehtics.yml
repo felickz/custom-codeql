@@ -1,0 +1,10 @@
+name: "GHAzDO Custom CodeQL Config File - Csharp Synthetic Apps All Queries"
+disable-default-queries: true
+packs:
+  # OSS csharp queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - GitHubSecurityLab/codeql-csharp-queries
+  # Data extensions for csharp libraries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - GitHubSecurityLab/codeql-csharp-library-sources
+
+  # CodeQL security-experimental query suite
+  - codeql/csharp-queries:codeql-suites/csharp-security-experimental.qls
