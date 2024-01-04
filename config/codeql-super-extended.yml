@@ -1,46 +1,89 @@
-- description: "ALL Security Queries - 🚧 under construction 🚧"
+# Use this configuration file when looking to get the broadest coverage of security results
+# A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
+name: "ALL Security Queries - 🚧 under construction 🚧"
 
-- qlpack: github-queries-csharp
+# expand thread model - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#extending-codeql-coverage-with-threat-models
+threat-models: local
 
-- import: codeql-suites/csharp-security-extended.qls
-  from: codeql/csharp-queries
+# start from scratch - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#disabling-the-default-queries
+disable-default-queries: true
 
-- queries: '.'
-  from: codeql/csharp-queries
+#- qlpack: github-queries-csharp
 
-# Include Experimental queries
-- include:
-    query path:
-      - /experimental\/.*/
+# Load all the experimental query suites (lightly documented: https://github.com/github/codeql/pull/11702)
 
-# Include lows
-- include:
-    kind:
-    - problem
-    - path-problem
-    tags contain:
-    - security
-    precision:
-    - low
-# 
-- include:
-    tags contain:
-    - experimental
-    - solorigate
+# import: codeql-suites/go-security-extended.qls
+# from: codeql/go-queries
 
-# Remove debugging, and audit queries
-- exclude:
-    tags contain:
-      - debugging
-      - audit
-# Remove local testing folders
-- exclude:
-    query path:
-      - /testing\/.*/
-- exclude:
-    deprecated: //
-- exclude:
-    query path:
-      - Metrics/Summaries/FrameworkCoverage.ql
-      - /Diagnostics/Internal/.*/
-      - /ir\/.*/
+# - import: codeql-suites/cpp-security-extended.qls
+#   from: codeql/cpp-queries
+
+# - import: codeql-suites/java-security-extended.qls
+#   from: codeql/java-queries
+
+# - import: codeql-suites/ruby-security-extended.qls
+#   from: codeql/ruby-queries
+
+# - import: codeql-suites/swift-security-extended.qls
+#   from: codeql/swift-queries
+
+#  - import: codeql-suites/csharp-security-extended.qls
+#  from: codeql/csharp-queries
+
+# - import: codeql-suites/python-security-extended.qls
+#   from: codeql/python-queries
+
+# - import: codeql-suites/javascript-security-extended.qls
+#   from: codeql/javascript-queries
+
+queries:
+  # Built-In CodeQL Experimental Suites
+  - name: "go Security Experimental Suite"
+    uses: go-security-experimental.qls
+  - name: "cpp Security Experimental Suite"
+    uses: cpp-security-experimental.qls
+  - name: "java Security Experimental Suite"
+    uses: java-security-experimental.qls
+  - name: "ruby Security Experimental Suite"
+    uses: ruby-security-experimental.qls
+  - name: "swift Security Experimental Suite"
+    uses: swift-security-experimental.qls
+  - name: "csharp Security Experimental Suite"
+    uses: csharp-security-experimental.qls
+  - name: "python Security Experimental Suite"
+    uses: python-security-experimental.qls
+  - name: "javascript Security Experimental Suite"
+    uses: javascript-security-experimental.qls
+
+packs:              
+  # OSS csharp queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - githubsecuritylab/codeql-csharp-queries
+  # Data extensions for csharp libraries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - githubsecuritylab/codeql-csharp-library-sources
+  # Data extensions for csharp extensions from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+  - githubsecuritylab/codeql-csharp-extensions
+
+# # Pull from ALL Csharp queries from the built-in pack
+# - queries: '.'  
+#   from: codeql/csharp-queries
+
+# # include all security queries
+# - include:
+#     kind:
+#     - problem
+#     - path-problem
+#     tags contain:
+#     - security
+
+# # exclude queries that 
+# #  - have a precision other than low or no precision 
+# #  - are not problem.severity: recommendation
+# - exclude:
+#     precision:
+#     - very-high
+#     - high
+#     - medium
+#     problem.severity:
+#     - error
+#     - warning
+  

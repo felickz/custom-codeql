@@ -1,0 +1,46 @@
+- description: "ALL Security Queries - 🚧 under construction 🚧"
+
+- qlpack: github-queries-csharp
+
+- import: codeql-suites/csharp-security-extended.qls
+  from: codeql/csharp-queries
+
+- queries: '.'
+  from: codeql/csharp-queries
+
+# Include Experimental queries
+- include:
+    query path:
+      - /experimental\/.*/
+
+# Include lows
+- include:
+    kind:
+    - problem
+    - path-problem
+    tags contain:
+    - security
+    precision:
+    - low
+# 
+- include:
+    tags contain:
+    - experimental
+    - solorigate
+
+# Remove debugging, and audit queries
+- exclude:
+    tags contain:
+      - debugging
+      - audit
+# Remove local testing folders
+- exclude:
+    query path:
+      - /testing\/.*/
+- exclude:
+    deprecated: //
+- exclude:
+    query path:
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/
+      - /ir\/.*/
