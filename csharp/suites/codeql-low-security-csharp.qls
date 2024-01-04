@@ -1,0 +1,48 @@
+# https://codeql.github.com/docs/codeql-cli/creating-codeql-query-suites/
+- description: "CSharp built-in low/no precision security queries"
+
+# Attempt  to get all these low precision / no precision
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Bad Practices\LeftoverDebugCode.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Bad Practices\UseOfHtmlInputHidden.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-016\ASPNetMaxRequestLength.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-016\ASPNetPagesValidateRequest.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-016\ASPNetRequestValidationMode.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-020\UntrustedDataToExternalAPI.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-321\HardcodedEncryptionKey.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-321\HardcodedSymmetricEncryptionKey.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-327\DontInstallRootCert.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-502\UnsafeDeserialization.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-611\UseXmlSecureResolver.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Security Features\CWE-838\InappropriateEncoding.ql
+
+#And then some more problem.severity: recommendation
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\experimental\Security Features\backdoor\DangerousNativeFunctionCall.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\experimental\Security Features\backdoor\PotentialTimeBomb.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\experimental\Security Features\CWE-759\HashWithoutSalt.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\experimental\Security Features\Serialization\DefiningDatasetRelatedType.ql
+# C:\Utils\codeql\qlpacks\codeql\csharp-queries\0.8.0\Input Validation\UseOfFileUpload.ql
+
+# Pull from all Csharp queries built-in pack
+- queries: '.'  
+  from: codeql/csharp-queries
+
+  # include all security queries
+- include:
+    kind:
+    - problem
+    - path-problem
+    tags contain:
+    - security
+
+# exclude queries that 
+#  - have a precision other than low or no precision 
+#  - are not problem.severity: recommendation
+- exclude:
+    precision:
+    - very-high
+    - high
+    - medium
+    problem.severity:
+    - error
+    - warning
+  
