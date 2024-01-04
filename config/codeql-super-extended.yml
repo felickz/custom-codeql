@@ -39,21 +39,21 @@ disable-default-queries: true
 queries:
   # Built-In CodeQL Experimental Suites
   - name: "go Security Experimental Suite"
-    uses: go-security-experimental.qls
+    uses: go-security-experimental
   - name: "cpp Security Experimental Suite"
-    uses: cpp-security-experimental.qls
+    uses: cpp-security-experimental
   - name: "java Security Experimental Suite"
-    uses: java-security-experimental.qls
+    uses: java-security-experimental
   - name: "ruby Security Experimental Suite"
-    uses: ruby-security-experimental.qls
+    uses: ruby-security-experimental
   - name: "swift Security Experimental Suite"
-    uses: swift-security-experimental.qls
+    uses: swift-security-experimental
   - name: "csharp Security Experimental Suite"
-    uses: csharp-security-experimental.qls
+    uses: csharp-security-experimental
   - name: "python Security Experimental Suite"
-    uses: python-security-experimental.qls
+    uses: python-security-experimental
   - name: "javascript Security Experimental Suite"
-    uses: javascript-security-experimental.qls
+    uses: javascript-security-experimental
 
 packs:              
   # OSS csharp queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
