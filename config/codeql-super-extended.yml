@@ -36,24 +36,9 @@ disable-default-queries: true
 # - import: codeql-suites/javascript-security-extended.qls
 #   from: codeql/javascript-queries
 
-queries:
-  # Built-In CodeQL Experimental Suites
-  - name: "go Security Experimental Suite"
-    uses: go-security-experimental
-  - name: "cpp Security Experimental Suite"
-    uses: cpp-security-experimental
-  - name: "java Security Experimental Suite"
-    uses: java-security-experimental
-  - name: "ruby Security Experimental Suite"
-    uses: ruby-security-experimental
-  - name: "swift Security Experimental Suite"
-    uses: swift-security-experimental
-  - name: "csharp Security Experimental Suite"
-    uses: csharp-security-experimental
-  - name: "python Security Experimental Suite"
-    uses: python-security-experimental
-  - name: "javascript Security Experimental Suite"
-    uses: javascript-security-experimental
+queries: 
+  - name: "Built-In CodeQL Experimental Suites"
+    uses: security-experimental
 
 packs:              
   # OSS csharp queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
