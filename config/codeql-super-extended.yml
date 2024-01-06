@@ -1,5 +1,6 @@
-# Use this configuration file when looking to get the broadest coverage of security results
+# Use this configuration file when looking to get the broadest coverage of security results from the CodeQL Built in queries.
 # A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
+#2.15.0 - charp = 100 queries
 name: "ALL Security Queries - 🚧 under construction 🚧"
 
 # expand thread model - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#extending-codeql-coverage-with-threat-models
@@ -8,67 +9,79 @@ threat-models: local
 # start from scratch - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#disabling-the-default-queries
 disable-default-queries: true
 
-#- qlpack: github-queries-csharp
+# We cant do this additively after the filters below have been applied, so this will not work to pull in security-experimental + additional queries
+# queries: 
+#   # Load all the experimental query suites (lightly documented: https://github.com/github/codeql/pull/11702)  
+#   - name: "Built-In CodeQL Experimental Suites"
+#     uses: security-experimental
 
-# Load all the experimental query suites (lightly documented: https://github.com/github/codeql/pull/11702)
 
-# import: codeql-suites/go-security-extended.qls
-# from: codeql/go-queries
+packs:         
+    # All cpp queries
+    - codeql/cpp-queries:.
+    # All Csharp queries (309)
+    - codeql/csharp-queries:.
+    # All go queries
+    - codeql/go-queries:.
+    # All java queries
+    - codeql/java-queries:.
+    # All javascript queries
+    - codeql/javascript-queries:.
+    # All python queries
+    - codeql/python-queries:.
+    # All ruby queries
+    - codeql/ruby-queries:.
+    # All swift queries
+    - codeql/swift-queries:.
 
-# - import: codeql-suites/cpp-security-extended.qls
-#   from: codeql/cpp-queries
+query-filters:
 
-# - import: codeql-suites/java-security-extended.qls
-#   from: codeql/java-queries
-
-# - import: codeql-suites/ruby-security-extended.qls
-#   from: codeql/ruby-queries
-
-# - import: codeql-suites/swift-security-extended.qls
-#   from: codeql/swift-queries
-
-#  - import: codeql-suites/csharp-security-extended.qls
-#  from: codeql/csharp-queries
-
-# - import: codeql-suites/python-security-extended.qls
-#   from: codeql/python-queries
-
-# - import: codeql-suites/javascript-security-extended.qls
-#   from: codeql/javascript-queries
-
-queries: 
-  - name: "Built-In CodeQL Experimental Suites"
-    uses: security-experimental
-
-packs:              
-  # OSS csharp queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
-  - githubsecuritylab/codeql-csharp-queries
-  # Data extensions for csharp libraries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
-  - githubsecuritylab/codeql-csharp-library-sources
-  # Data extensions for csharp extensions from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
-  - githubsecuritylab/codeql-csharp-extensions
-
-# # Pull from ALL Csharp queries from the built-in pack
-# - queries: '.'  
-#   from: codeql/csharp-queries
-
-# # include all security queries
-# - include:
-#     kind:
-#     - problem
-#     - path-problem
-#     tags contain:
-#     - security
-
-# # exclude queries that 
-# #  - have a precision other than low or no precision 
-# #  - are not problem.severity: recommendation
-# - exclude:
-#     precision:
-#     - very-high
-#     - high
-#     - medium
-#     problem.severity:
-#     - error
-#     - warning
-  
+# Start with Security Experimental https://github.com/github/codeql/blob/main/misc/suite-helpers/security-experimental-selectors.yml
+# - precision ( low + Low or EXCLUDED precision)
+# + problem.severity: recommendation
+# - restriction of no experimental folder
+- include:
+    kind:
+    - problem
+    - path-problem
+    precision:
+    - high
+    - very-high
+    tags contain:
+    - security
+- include:
+    kind:
+    - problem
+    - path-problem
+    # REMOVE precision (Support NO or low/Low precision)
+    # precision:
+    # - medium  
+    # - low
+    # - Low
+    problem.severity:
+    - error
+    - warning
+    # ADD recommendation
+    - recommendation
+    tags contain:
+    - security
+- include:
+    kind:
+    - diagnostic
+- include:
+    kind:
+    - metric
+    tags contain:
+    - summary
+- exclude:
+    deprecated: //
+- exclude:
+    query path:
+      # REMOVE exclude - OK even if they exist in experimental folder
+      #- /^experimental\/.*/
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/
+- exclude:
+    tags contain:
+      - modeleditor
+      - modelgenerator
