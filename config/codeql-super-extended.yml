@@ -88,4 +88,9 @@ query-filters:
 # Exclude audit queries from the CodeQL Built in packs
 - exclude:
     id:
-    - "cs/untrusted-data-to-external-api"
+    - cpp/untrusted-data-to-external-api
+    - cs/untrusted-data-to-external-api
+    - go/untrusted-data-to-external-api
+    - java/untrusted-data-to-external-api
+    - js/untrusted-data-to-external-api
+    - py/untrusted-data-to-external-api
