@@ -1,7 +1,8 @@
-# Use this configuration file when looking to get the broadest coverage of security results from the CodeQL Built in Suites, and the GitHub Security Lab Community Packs.
-# A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
+# Use this configuration file when looking to get the broadest coverage of security results from the CodeQL Built in packs and the GitHub Security Lab Community packs.
+# WARNING: A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
+# NOTE: This configuration will not include audit level queries intended for gathering information about the codebase, and debugging queries intended for CodeQL developers.
 
-name: "Synthetic Apps All Queries"
+name: "Synthetic Apps All Queries Config"
 
 # expand thread model - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#extending-codeql-coverage-with-threat-models
 threat-models: local
@@ -20,7 +21,8 @@ packs:
     - codeql/ruby-queries:.
     - codeql/swift-queries:.
 
-    # OSS queries from the GitHub Security Lab https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+    # OSS queries from the default suites for the GitHub Security Lab's Community Packs https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
+    # NOTE: the default suites do not include audit/debugging queries
     - githubsecuritylab/codeql-cpp-queries
     - githubsecuritylab/codeql-csharp-queries
     - githubsecuritylab/codeql-go-queries
@@ -40,36 +42,16 @@ packs:
 
 
 
-
-query-filters:
-
-# Start with Security Experimental https://github.com/github/codeql/blob/main/misc/suite-helpers/security-experimental-selectors.yml
+# Start with Security Experimental (lightly documented: https://github.com/github/codeql/pull/11702) : https://github.com/github/codeql/blob/main/misc/suite-helpers/security-experimental-selectors.yml
 # - precision ( low + Low or EXCLUDED precision)
 # + problem.severity: recommendation
 # - restriction of no experimental folder
+# - restriction of audit/debugging queries from community packs
+query-filters:
 - include:
     kind:
     - problem
     - path-problem
-    precision:
-    - high
-    - very-high
-    tags contain:
-    - security
-- include:
-    kind:
-    - problem
-    - path-problem
-    # REMOVE precision (Support NO or low/Low precision)
-    # precision:
-    # - medium  
-    # - low
-    # - Low
-    problem.severity:
-    - error
-    - warning
-    # ADD recommendation
-    - recommendation
     tags contain:
     - security
 - include:
@@ -92,3 +74,8 @@ query-filters:
     tags contain:
       - modeleditor
       - modelgenerator
+# Remove debugging, and audit queries used by community packs (this is duplicative of the default suites from those community packs)
+- exclude:
+    tags contain:
+      - debugging
+      - audit

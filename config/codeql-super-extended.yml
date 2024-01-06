@@ -1,7 +1,7 @@
 # Use this configuration file when looking to get the broadest coverage of security results from the CodeQL Built in queries.
 # A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
 #2.15.0 - charp = 100 queries
-name: "ALL Security Queries - 🚧 under construction 🚧"
+name: "All CodeQL Built In Security Queries Config"
 
 # expand thread model - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#extending-codeql-coverage-with-threat-models
 threat-models: local
@@ -36,7 +36,7 @@ packs:
 
 query-filters:
 
-# Start with Security Experimental https://github.com/github/codeql/blob/main/misc/suite-helpers/security-experimental-selectors.yml
+# Start with Security Experimental (lightly documented: https://github.com/github/codeql/pull/11702) : https://github.com/github/codeql/blob/main/misc/suite-helpers/security-experimental-selectors.yml
 # - precision ( low + Low or EXCLUDED precision)
 # + problem.severity: recommendation
 # - restriction of no experimental folder
