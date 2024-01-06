@@ -85,3 +85,7 @@ query-filters:
     tags contain:
       - modeleditor
       - modelgenerator
+# Exclude audit queries from the CodeQL Built in packs
+- exclude:
+    id:
+    - "cs/untrusted-data-to-external-api"
