@@ -1,4 +1,4 @@
-name: felickz/javascript
+name: felickz/codeql-javascript
 version: 0.0.0
 dependencies:
   # This uses the latest version of the codeql/javascript-all library.

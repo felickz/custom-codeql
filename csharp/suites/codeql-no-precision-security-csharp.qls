@@ -1,0 +1,62 @@
+# Pull from all Csharp queries built-in pack
+- queries: '.'  
+  from: codeql/csharp-queries
+
+#   # include all security queries (precision valid or no precision)
+# - include:
+#     kind:
+#     - problem
+#     - path-problem
+#     precision:
+#     # - "/(very-high|high|medium|low|Low)/"
+#     # - "$null"
+#     - "/(?!.*\bhigh\b).*/"
+#     tags contain:
+#     - security
+
+
+- include:
+    kind:
+    - problem
+    - path-problem
+    precision:
+    - high
+    - very-high
+    tags contain:
+    - security
+- include:
+    kind:
+    - problem
+    - path-problem
+    # REMOVE precision (Support NO or low/Low precision)
+    # precision:
+    # - medium  
+    # - low
+    # - Low
+    problem.severity:
+    - error
+    - warning
+    # ADD recommendation
+    - recommendation
+    tags contain:
+    - security
+- include:
+    kind:
+    - diagnostic
+- include:
+    kind:
+    - metric
+    tags contain:
+    - summary
+- exclude:
+    deprecated: //
+- exclude:
+    query path:
+      # REMOVE exclude - OK even if they exist in experimental folder
+      #- /^experimental\/.*/
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/
+- exclude:
+    tags contain:
+      - modeleditor
+      - modelgenerator

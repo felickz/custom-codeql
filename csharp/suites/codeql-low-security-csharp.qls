@@ -26,7 +26,7 @@
 - queries: '.'  
   from: codeql/csharp-queries
 
-  # include all security queries
+  # include all security queries (87)
 - include:
     kind:
     - problem
@@ -34,7 +34,7 @@
     tags contain:
     - security
 
-# exclude queries that 
+# exclude queries (down to 18)
 #  - have a precision other than low or no precision 
 #  - are not problem.severity: recommendation
 - exclude:

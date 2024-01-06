@@ -1,0 +1,59 @@
+# https://codeql.github.com/docs/codeql-cli/creating-codeql-query-suites/
+- description: "Java built-in low/no precision security queries"
+
+# Pulls in
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\experimental\Security\CWE\CWE-200\InsecureWebResourceResponse.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\experimental\Security\CWE\CWE-200\SensitiveAndroidFileLeak.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\experimental\Security\CWE\CWE-400\LocalThreadResourceAbuse.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\experimental\Security\CWE\CWE-400\ThreadResourceAbuse.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\experimental\Security\CWE\CWE-759\HashWithoutSalt.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-020\UntrustedDataToExternalAPI.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-022\TaintedPathLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-078\ExecTaintedLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-079\XSSLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-089\SqlTaintedLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-113\ResponseSplittingLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-129\ImproperValidationOfArrayConstructionCodeSpecified.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-129\ImproperValidationOfArrayConstructionLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-129\ImproperValidationOfArrayIndexCodeSpecified.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-129\ImproperValidationOfArrayIndexLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-134\ExternallyControlledFormatStringLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-190\ArithmeticTaintedLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-190\ArithmeticWithExtremeValues.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-312\AllowBackupAttributeEnabled.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-312\CleartextStorageClass.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-319\HttpsUrls.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-319\UseSSL.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-319\UseSSLSocketFactories.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-601\UrlRedirectLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-611\XXELocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-681\NumericCastTaintedLocal.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-798\HardcodedCredentialsComparison.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-798\HardcodedCredentialsSourceCall.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-798\HardcodedPasswordField.ql
+# C:\Utils\codeql\qlpacks\codeql\java-queries\0.8.0\Security\CWE\CWE-833\LockOrderInconsistency.ql
+
+# Pull from all java queries built-in pack
+- queries: '.'  
+  from: codeql/java-queries
+
+  # include all security queries
+- include:
+    kind:
+    - problem
+    - path-problem
+    tags contain:
+    - security
+
+# exclude queries that 
+#  - have a precision other than low or no precision 
+#  - are not problem.severity: recommendation
+- exclude:
+    precision:
+    - very-high
+    - high
+    - medium
+    problem.severity:
+    - error
+    - warning
+  

@@ -1,0 +1,52 @@
+# https://codeql.github.com/docs/codeql-cli/creating-codeql-query-suites/
+
+- description: "CSharp Super Extended Suite"
+
+# All Csharp queries
+- queries: '.'  
+  from: codeql/csharp-queries
+
+# Solarigate queries under experimental\Security Features\backdoor\ (may not have security tag)
+- include:
+    tags contain:
+    - experimental
+    - solorigate
+
+- include:
+    kind:
+    - problem
+    - path-problem
+    - metric
+    - diagnostic
+    # Remove precision - not all experimental security queries are tagged with this yet.
+    # precision:
+    # - very-high
+    # - high
+    # - medium
+    # - low
+    tags contain:
+    - security
+
+#Standard CodeQL Diagnostic/Metric queries
+- include:
+    kind:
+    - diagnostic
+- include:
+    kind:
+    - metric
+    tags contain:
+    - summary
+- exclude:
+    query path:
+      - Metrics/Summaries/FrameworkCoverage.ql
+      - /Diagnostics/Internal/.*/    
+
+# Remove debugging, and audit queries
+- exclude:
+    tags contain:
+      - debugging
+      - audit
+# Remove local testing folders
+- exclude:
+    query path:
+      - /testing\/.*/
