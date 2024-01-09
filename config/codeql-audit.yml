@@ -12,7 +12,7 @@ disable-default-queries: true
 
 packs:
     # OSS audit queries from the default suites for the GitHub Security Lab's Community Packs https://github.com/GitHubSecurityLab/CodeQL-Community-Packs    
-    #- githubsecuritylab/codeql-cpp-queries:suites/cpp-audit.qls
+    - githubsecuritylab/codeql-cpp-queries:suites/cpp-audit.qls
     - githubsecuritylab/codeql-csharp-queries:suites/csharp-audit.qls
     - githubsecuritylab/codeql-go-queries:suites/go-audit.qls
     - githubsecuritylab/codeql-java-queries:suites/java-audit.qls
