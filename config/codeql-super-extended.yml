@@ -94,3 +94,19 @@ query-filters:
     - java/untrusted-data-to-external-api
     - js/untrusted-data-to-external-api
     - py/untrusted-data-to-external-api
+
+
+#Additional extractor excludes:  https://github.com/github/codeql/blob/768e5190a1c9d40a4acc7143c461c3b114e7fd59/javascript/extractor/src/com/semmle/js/extractor/AutoBuild.java#L421-L427C42
+paths-ignore:
+  # Python
+  - "vendor/**"
+  - "examples/**"
+  - "tests/**"
+
+  # JavaScript
+  - "node_modules"
+  - "**/*.test.js"  
+  - "**/*.test.tsx"
+  - "**/*.spec.ts"
+  - "**/*.spec.tsx"
+  - "dist"
