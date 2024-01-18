@@ -14,6 +14,7 @@ packs:
     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
     - codeql/python-queries:codeql-suites/python-security-extended.qls
     - codeql/ruby-queries:codeql-suites/ruby-security-extended.qls
+    - codeql/swift-queries:codeql-suites/swift-security-extended.qls
 
     # Queries via Community Packs that use local sources https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
     - githubsecuritylab/codeql-java-queries:suites/java-local.qls
