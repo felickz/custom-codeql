@@ -1,4 +1,3 @@
-# TODO: WORK IN PROGRESS: https://github.com/GitHubSecurityLab/CodeQL-Community-Packs/pull/35
 # Use this configuration file when looking to audit the codebase for security risks.
 # WARNING: A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
 
@@ -11,7 +10,7 @@ threat-models: local
 disable-default-queries: true
 
 packs:
-    # OSS audit queries from the default suites for the GitHub Security Lab's Community Packs https://github.com/GitHubSecurityLab/CodeQL-Community-Packs    
+    # OSS audit queries from the default suites for the GitHub Security Lab's Community Packs https://github.com/GitHubSecurityLab/CodeQL-Community-Packs
     - githubsecuritylab/codeql-cpp-queries:suites/cpp-audit.qls
     - githubsecuritylab/codeql-csharp-queries:suites/csharp-audit.qls
     - githubsecuritylab/codeql-go-queries:suites/go-audit.qls
