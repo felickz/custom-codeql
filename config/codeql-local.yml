@@ -1,6 +1,6 @@
 # Use this configuration file when looking to expand the sources of vulnerability data using CodeQL Built in queries,custom queries, and data extensions.
 # A notable amount of false positives may be found in this configuration.  If you wish to reduce the number of false positives, use the default codeql suites :)
-name: "Synthetic Apps All Queries Config"
+name: "Local Sources Config"
 
 # expand thread model - https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#extending-codeql-coverage-with-threat-models
 threat-models: local
