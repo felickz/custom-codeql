@@ -52,3 +52,12 @@ This file is used for analyzing synthetic code samples. This configuration uses 
 - queries marked as `@precision: low` or missing a precision
 - queries marked as `@problem.severity: recommendation`
 - queries in `\experimental\` folders
+
+## [codeql-local.yml](codeql-local.yml)
+Use this configuration file when looking to expand the sources of vulnerability data using CodeQL Built in queries,custom queries, and data extensions.
+A notable amount of false positives may be found in this configuration.  It includes:
+- built in queries
+- `threat-models: local`
+- Suites that include community queries/suites/data extensions that are explicitly looking for local sources:
+  - githubsecuritylab/codeql-java-queries:suites/java-local.qls
+  - githubsecuritylab/codeql-python-queries:suites/python-local.qls
