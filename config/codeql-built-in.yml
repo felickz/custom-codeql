@@ -1,0 +1,25 @@
+name: "Sample showing various ways to utilize the CodeQL Built in Packs and Suites"
+
+# packs:
+#     - codeql/cpp-queries:codeql-suites/cpp-security-extended.qls
+#     - codeql/csharp-queries:codeql-suites/csharp-security-extended.qls
+#     - codeql/go-queries:codeql-suites/go-security-extended.qls
+#     - codeql/java-queries:codeql-suites/java-security-extended.qls
+#     - codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
+#     - codeql/python-queries:codeql-suites/python-security-extended.qls
+#     - codeql/ruby-queries:codeql-suites/ruby-security-extended.qls
+#     - codeql/swift-queries:codeql-suites/swift-security-extended.qls
+
+# queries:
+#   - uses: cpp-security-extended.qls
+#   - uses: csharp-security-extended.qls
+#   - uses: go-security-extended.qls
+#   - uses: java-security-extended.qls
+#   - uses: javascript-security-extended.qls
+#   - uses: python-security-extended.qls
+#   - uses: ruby-security-extended.qls
+#   - uses: swift-security-extended.qls
+
+
+queries:
+  - uses: security-extended
