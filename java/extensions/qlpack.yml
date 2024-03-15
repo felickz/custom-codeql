@@ -1,6 +1,6 @@
 library: true
 name: felickz/codeql-custom-java-models
-version: 0.0.2
+version: 0.0.4
 extensionTargets:
   codeql/java-all: '*'
 dataExtensions:
