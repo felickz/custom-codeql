@@ -18,7 +18,7 @@ This repository is intended to be a working directory for any custom CodeQL work
 ### Config file usage
 
 Use the configuration files from any configuration!
-```yml    
+```yml
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
@@ -34,4 +34,12 @@ codeql pack install .\java\
 codeql pack create .\java\
 
 gh auth token | codeql pack publish .\java --github-auth-stdin
+```
+
+## Model Pack ex
+```
+#You shouldn't need to run pack install for a model pack, create just runs a subset of things that publish does (creates the pack, but doesn't bundle it or zip it)
+codeql pack create .\java\extensions
+
+echo "<pat>"  | codeql pack publish . --github-auth-stdin
 ```
