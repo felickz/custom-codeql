@@ -1,5 +1,5 @@
 name: "Filter to Security Queries that have a critical severity only"
-queries: security-extended
+
 query-filters:
 - include:
     security-severity:
