@@ -1,8 +1,8 @@
 // /**
-//  * @name Low Java analysis quality
-//  * @description Low Java analysis quality
+//  * @name Low CSharp analysis quality
+//  * @description Low Csharp analysis quality
 //  * @kind diagnostic
-//  * @id java/diagnostic/database-quality
+//  * @id csharp/diagnostic/database-quality
 //  */
 
 import csharp
