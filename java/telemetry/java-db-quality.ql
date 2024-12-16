@@ -33,7 +33,7 @@ signature module StatsSig {
   
     string getOkText() { result = "OK - >95% calls with call target" }
   
-    string getNotOkText() { result = "LOW - <95% calls with missing call target" }
+    string getNotOkText() { result = "LOW - <95% calls with call target (missing)" }
   }
   
 
@@ -44,7 +44,7 @@ signature module StatsSig {
   
     string getOkText() { result = "OK - >95% expressions with known type" }
   
-    string getNotOkText() { result = "LOW - <95%  expressions with unknown type" }
+    string getNotOkText() { result = "LOW - <95%  expressions with known type (unknown)" }
   }
 
 
