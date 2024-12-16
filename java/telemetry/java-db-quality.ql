@@ -74,4 +74,6 @@ where
     exprTypePercent > 95.0 and exprTypeResultText = ExprTypeStats::getOkText() or
     exprTypePercent <= 95.0 and exprTypeResultText = ExprTypeStats::getNotOkText()
   )
+  // For MRVA only show results that are not OK
+  and ( callTargetPercent < 95.0 or exprTypePercent < 95.0 )
 select callTargetPercent, callTargetResultText, exprTypePercent, exprTypeResultText
