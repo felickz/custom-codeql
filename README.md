@@ -33,5 +33,6 @@ Use the configuration files from any configuration!
 codeql pack install .\java\
 codeql pack create .\java\
 
+gh auth login --scopes "write:packages,read:packages,repo"
 gh auth token | codeql pack publish .\java --github-auth-stdin
 ```
