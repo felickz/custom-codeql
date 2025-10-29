@@ -1,0 +1,14 @@
+#See: github.com/github/codeql-coding-standards
+name: "Coding Standards Config"
+packs:
+# FULL SEND of Coding Standards
+#- codeql/misra-c-coding-standards
+
+# LESS NOISE - MORE VALUE
+- advanced-security/coding-standards-c-baseline:query-suites/c-baseline-default.qls
+- advanced-security/coding-standards-c-baseline:query-suites/c-baseline-safety.qls
+- advanced-security/coding-standards-c-baseline:query-suites/c-baseline-style.qls
+- advanced-security/coding-standards-cpp-baseline:query-suites/cpp-baseline-default.qls
+- advanced-security/coding-standards-cpp-baseline:query-suites/cpp-baseline-safety.qls
+- advanced-security/coding-standards-cpp-baseline:query-suites/cpp-baseline-style.qls
+
