@@ -1,0 +1,12 @@
+# Understand Codeql Security/Quality Severity: https://gh.io/codeql-severity
+name: "Filter to Security/Quality Queries that do not have low/note severity"
+
+query-filters:
+# Any NOTE severity quality queries
+- exclude:
+    problem.severity: recommendation
+# Any LOW severity security security queries (0-3.9 CVSS)
+- exclude:
+    tags contain: security
+    security-severity: 
+      - /^[0-3]\./
